@@ -5,7 +5,7 @@
         "LambdaSourceBucket": {
             "Type": "String",
             "Description": "Name of S3 bucket where Lambda function packages are stored.",
-            "Default": "awslambda-reference-architectures"
+            "Default": "holidayondemand-lambda"
         },
         "LambdaMobileSearchS3Key": {
             "Type": "String",

@@ -8,51 +8,6 @@
         }
     },
     "Resources": {
-        "CloudFrontDistribution": {
-            "Type": "AWS::CloudFront::Distribution",
-            "Properties": {
-                "DistributionConfig": {
-                    "Enabled": true,
-                    "PriceClass": "PriceClass_All",
-                    "DefaultCacheBehavior": {
-                        "TargetOriginId": "S3-mobile-user-uploads",
-                        "ViewerProtocolPolicy": "allow-all",
-                        "MinTTL": 0,
-                        "AllowedMethods": [
-                            "HEAD",
-                            "GET"
-                        ],
-                        "CachedMethods": [
-                            "HEAD",
-                            "GET"
-                        ],
-                        "ForwardedValues": {
-                            "Cookies": {
-                                "Forward": "none"
-                            },
-                            "QueryString" : "false"
-                        }
-                    },
-                    "Origins": [
-                        {
-                        	"DomainName": {"Fn::Join" : ["", [{"Ref" : "S3MobileUploadsBucket"}, ".s3.amazonaws.com"]]},
-                            "Id": "S3-mobile-user-uploads",
-                            "S3OriginConfig": {}
-                        }
-                    ],
-                    "Restrictions": {
-                        "GeoRestriction": {
-                            "RestrictionType": "none",
-                            "Locations": []
-                        }
-                    },
-                    "ViewerCertificate": {
-                        "CloudFrontDefaultCertificate": "true",
-                        "MinimumProtocolVersion": "SSLv3"
-                    }
-                }
-            }
-        },
         "tablePhotoNotes": {
             "Type": "AWS::DynamoDB::Table",
             "Properties": {
@@ -88,12 +43,6 @@
       		"Description": "Storage location for mobile uploads",
       		"Value": {
         		"Ref": "S3mobileuseruploads"
-      		}
-    	},
-    	"CloudFrontUrl": {
-      		"Description": "CloudFront Url to reference in lambda function",
-      		"Value": {
-        		"Ref": "CloudFrontDistribution"
       		}
     	}
   	}
